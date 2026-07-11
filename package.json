@@ -1,0 +1,18 @@
+{
+  "name": "zhay-bhai",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Bunk It - meeting excuse generator (web dashboard + browser extension)",
+  "scripts": {
+    "dev:web": "pnpm --filter @zhay-bhai/web dev",
+    "build:web": "pnpm --filter @zhay-bhai/web build",
+    "dev:extension": "pnpm --filter @zhay-bhai/extension dev",
+    "build:extension": "pnpm --filter @zhay-bhai/extension build",
+    "build": "pnpm -r build",
+    "lint": "pnpm -r lint"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "packageManager": "pnpm@10.33.0"
+}

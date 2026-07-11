@@ -1,0 +1,25 @@
+{
+  "name": "@zhay-bhai/extension",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite build --watch --mode development",
+    "build": "vite build",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "@zhay-bhai/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.3",
+    "@types/chrome": "^0.2.2",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "typescript": "^5.9.3",
+    "vite": "^8.1.4",
+    "vite-plugin-static-copy": "^4.1.1"
+  }
+}

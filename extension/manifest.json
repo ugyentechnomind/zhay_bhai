@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "Bunk It - Meeting Excuse Generator",
+  "short_name": "Bunk It",
+  "version": "0.1.0",
+  "description": "Adds a Bunk button to Google Calendar so you can politely skip a meeting with an AI-drafted excuse email.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "options_page": "options.html",
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://calendar.google.com/*"],
+      "js": ["content-script.js"],
+      "css": ["content-script.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "permissions": ["storage", "alarms"],
+  "host_permissions": [
+    "http://localhost:3000/*",
+    "https://*.vercel.app/*"
+  ]
+}

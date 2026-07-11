@@ -1,0 +1,56 @@
+.bunk-it-button {
+  margin-left: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: none;
+  background: #111827;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.bunk-it-button:hover {
+  background: #1f2937;
+}
+
+.bunk-it-menu {
+  position: absolute;
+  z-index: 2147483647;
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.bunk-it-menu-item {
+  padding: 8px 14px;
+  border: none;
+  background: none;
+  text-align: left;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.bunk-it-menu-item:hover {
+  background: #f3f4f6;
+}
+
+.bunk-it-toast {
+  position: absolute;
+  bottom: -36px;
+  left: 0;
+  z-index: 2147483647;
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: #111827;
+  color: #fff;
+  font-size: 12px;
+  font-family: inherit;
+}
