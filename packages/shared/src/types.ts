@@ -7,12 +7,8 @@ export type ExcuseTone =
   | "work_conflict"
   | "connectivity";
 
-export type EventRsvpStatus = "needsAction" | "accepted" | "declined" | "tentative" | "bunked";
-
 export interface CalendarEvent {
   id: string;
-  userId: string;
-  googleEventId: string;
   title: string;
   description: string | null;
   organizerEmail: string | null;
@@ -20,37 +16,27 @@ export interface CalendarEvent {
   location: string | null;
   startTime: string;
   endTime: string;
-  status: EventRsvpStatus;
   htmlLink: string | null;
 }
 
-export interface Excuse {
-  id: string;
-  userId: string;
-  eventId: string;
-  tone: ExcuseTone;
-  subject: string;
-  body: string;
-  sentAt: string | null;
-  createdAt: string;
-}
-
 export interface GenerateExcuseRequest {
-  eventId: string;
+  eventTitle: string;
+  organizerName: string | null;
   tone: ExcuseTone;
+  senderFirstName?: string;
 }
 
 export interface GenerateExcuseResponse {
-  excuseId: string;
   subject: string;
   body: string;
 }
 
 export interface SendExcuseRequest {
-  excuseId: string;
-  /** Allow the user to tweak the AI draft before it goes out. */
-  subject?: string;
-  body?: string;
+  /** The Google refresh token stored in the browser - there is no server-side session. */
+  refreshToken: string;
+  to: string;
+  subject: string;
+  body: string;
 }
 
 export interface SendExcuseResponse {
@@ -66,6 +52,7 @@ export interface ApiError {
 export const GOOGLE_SCOPES = [
   "https://www.googleapis.com/auth/calendar.readonly",
   "https://www.googleapis.com/auth/gmail.send",
+  "https://www.googleapis.com/auth/userinfo.email",
 ];
 
 export const EXCUSE_TONE_LABELS: Record<ExcuseTone, string> = {

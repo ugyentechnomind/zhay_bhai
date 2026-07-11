@@ -1,50 +1,52 @@
 import { google } from "googleapis";
-import { createAdminClient } from "@/lib/supabase/admin";
 
 export { GOOGLE_SCOPES } from "@zhay-bhai/shared";
+import { GOOGLE_SCOPES } from "@zhay-bhai/shared";
 
-/** Builds an OAuth2 client hydrated with a user's stored Google tokens. */
-export async function getGoogleClientForUser(userId: string) {
-  const admin = createAdminClient();
-  const { data, error } = await admin
-    .from("connected_accounts")
-    .select("*")
-    .eq("user_id", userId)
-    .maybeSingle();
+function redirectUri(origin: string) {
+  return `${origin}/api/google/callback`;
+}
 
-  if (error) throw error;
-  if (!data) return null;
-
-  const oauth2Client = new google.auth.OAuth2(
+function baseOAuthClient(origin?: string) {
+  return new google.auth.OAuth2(
     process.env.GOOGLE_CLIENT_ID,
     process.env.GOOGLE_CLIENT_SECRET,
+    origin ? redirectUri(origin) : undefined,
   );
+}
 
-  oauth2Client.setCredentials({
-    refresh_token: data.refresh_token,
-    access_token: data.access_token ?? undefined,
-    expiry_date: data.access_token_expires_at
-      ? new Date(data.access_token_expires_at).getTime()
-      : undefined,
+/** Builds the URL that kicks off Google's consent screen. */
+export function getGoogleAuthUrl(origin: string) {
+  return baseOAuthClient(origin).generateAuthUrl({
+    access_type: "offline",
+    prompt: "consent",
+    scope: GOOGLE_SCOPES,
   });
+}
 
-  // Persist a refreshed access token so we don't hit the token endpoint on
-  // every call.
-  oauth2Client.on("tokens", async (tokens) => {
-    if (!tokens.access_token) return;
-    await admin
-      .from("connected_accounts")
-      .update({
-        access_token: tokens.access_token,
-        access_token_expires_at: tokens.expiry_date
-          ? new Date(tokens.expiry_date).toISOString()
-          : null,
-        updated_at: new Date().toISOString(),
-      })
-      .eq("user_id", userId);
-  });
+/** Exchanges an OAuth `code` for a refresh token + the connected email. */
+export async function exchangeCodeForTokens(origin: string, code: string) {
+  const client = baseOAuthClient(origin);
+  const { tokens } = await client.getToken(code);
 
-  return { oauth2Client, googleEmail: data.google_email as string };
+  if (!tokens.refresh_token) {
+    throw new Error(
+      "Google didn't return a refresh token. Remove Zhay Bhai AI's access at " +
+        "https://myaccount.google.com/permissions and try connecting again.",
+    );
+  }
+
+  client.setCredentials(tokens);
+  const { data } = await google.oauth2({ version: "v2", auth: client }).userinfo.get();
+
+  return { refreshToken: tokens.refresh_token, email: data.email ?? "" };
+}
+
+/** Builds an OAuth2 client hydrated with a refresh token pulled from the browser. */
+export function clientFromRefreshToken(refreshToken: string) {
+  const client = baseOAuthClient();
+  client.setCredentials({ refresh_token: refreshToken });
+  return client;
 }
 
 /** Fetches calendar events in a window around "now" (default: -5 to +5 days). */
