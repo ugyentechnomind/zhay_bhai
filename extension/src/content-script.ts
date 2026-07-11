@@ -124,7 +124,7 @@ async function handleBunkClick(popover: HTMLElement) {
   if (!eventId) {
     showToast(
       popover,
-      "Bunk It couldn't identify this event automatically. Open the extension popup instead.",
+      "Zhay Bhai AI couldn't identify this event automatically. Open the extension popup instead.",
     );
     return;
   }

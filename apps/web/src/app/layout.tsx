@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Bunk It",
+  title: "Zhay Bhai AI",
   description: "Politely skip meetings you can't make it to.",
 };
 

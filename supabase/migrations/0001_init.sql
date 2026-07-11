@@ -1,4 +1,4 @@
--- Bunk It: initial schema
+-- Zhay Bhai AI: initial schema
 -- Profiles, Google account connections, synced calendar events, generated excuses,
 -- and personal access tokens used by the browser extension.
 

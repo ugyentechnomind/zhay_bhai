@@ -54,7 +54,7 @@ export function DashboardClient({
     <div className="mx-auto w-full max-w-2xl px-6 py-10">
       <header className="mb-8 flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-semibold">Bunk It</h1>
+          <h1 className="text-2xl font-semibold">Zhay Bhai AI</h1>
           <p className="text-sm text-zinc-500">{userEmail}</p>
         </div>
         <div className="flex gap-2">

@@ -21,9 +21,9 @@ export function App() {
 
   return (
     <div className="app">
-      <h1>Bunk It - Settings</h1>
+      <h1>Zhay Bhai AI - Settings</h1>
       <p className="hint">
-        Open your Bunk It web dashboard's Settings page, generate a token, and paste it below.
+        Open your Zhay Bhai AI web dashboard's Settings page, generate a token, and paste it below.
       </p>
 
       <label htmlFor="apiBaseUrl">Web app URL</label>

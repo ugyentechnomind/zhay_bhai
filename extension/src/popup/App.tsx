@@ -42,7 +42,7 @@ export function App() {
     return (
       <div className="app">
         <div className="app-header">
-          <h1>Bunk It</h1>
+          <h1>Zhay Bhai AI</h1>
         </div>
         <p className="empty-state">
           Not paired yet.{" "}
@@ -58,7 +58,7 @@ export function App() {
   return (
     <div className="app">
       <div className="app-header">
-        <h1>Bunk It</h1>
+        <h1>Zhay Bhai AI</h1>
         <button className="btn" onClick={refresh} disabled={loading}>
           {loading ? "Syncing…" : "Sync"}
         </button>

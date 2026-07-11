@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
-  "name": "Bunk It - Meeting Excuse Generator",
-  "short_name": "Bunk It",
+  "name": "Zhay Bhai AI - Meeting Excuse Generator",
+  "short_name": "Zhay Bhai AI",
   "version": "0.1.0",
   "description": "Adds a Bunk button to Google Calendar so you can politely skip a meeting with an AI-drafted excuse email.",
   "icons": {

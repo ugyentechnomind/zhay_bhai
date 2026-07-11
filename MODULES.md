@@ -65,8 +65,8 @@ Two things a teammate can meaningfully harden here:
 - **A second injection target**: RSVP buttons also show up in Gmail's
   calendar invite emails, not just calendar.google.com. Extending
   `content_scripts.matches` in `extension/manifest.json` to include
-  `https://mail.google.com/*` and adjusting the selectors would extend Bunk
-  It there too - worth its own PR since the Gmail DOM is different.
+  `https://mail.google.com/*` and adjusting the selectors would extend Zhay
+  Bhai AI there too - worth its own PR since the Gmail DOM is different.
 
 If this script ever silently stops finding the RSVP row, the popup (which
 talks to the same `/api/extension/bunk` endpoint through

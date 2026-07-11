@@ -1,4 +1,4 @@
-# Bunk It 🙈
+# Zhay Bhai AI 🙈
 
 Politely skip a meeting you can't make: see your calendar's ±5 day window, pick a
 reason, let Claude draft a short decline email, and send it to the organizer -
